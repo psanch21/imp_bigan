@@ -14,6 +14,7 @@ and you should be ready to to go.
 - ````ld````: Parameter that controls the shape of the non-uniform distribution, namely $\lambda_{dist}$
 - ````lp````: Parameter that controls the percentage of the non-uniform samples per mini-bartch, namely $\lambda_{perc}$
 - ````lr````: Parameter that controls reconstruction regularization, namely $\lambda_{cyc}$
+- ````gan_type````: Select the model to train: mdgan, pmdgan, epmdgan.
 
 ### Examples
 ```
