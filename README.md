@@ -1,4 +1,4 @@
-# Improving BiGAN training with marginal likelihood equalization - Official PyTorch implementation
+# Improving BiGAN training with marginal likelihood equalization - PyTorch implementation
 
 ## Getting started
 
