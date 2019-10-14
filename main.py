@@ -69,7 +69,7 @@ model.plot_reconstruction(base_dir=os.path.join(trainer.save_dir, 'test'), scale
 z_list, x_recons_test_norm = model.recons(x_test_norm)
 x_recons_test = data_fn.denorm(x_recons_test_norm, scaler)
 
-z_list, x_recons_tr_norm = model.recons(x_train_norm)
+z_list_tr, x_recons_tr_norm = model.recons(x_train_norm)
 x_recons_tr = data_fn.denorm(x_recons_tr_norm, scaler)
 
 if args.gan_type in [cte.EPMDGAN, cte.PMDGAN]:
@@ -81,7 +81,7 @@ if args.gan_type in [cte.EPMDGAN, cte.PMDGAN]:
     model.plot_loglikelihod(base_dir=os.path.join(trainer.save_dir, 'test'), scaler=scaler, x_norm=x_test_norm)
 
     ll_object = ll.ApproxLL(model, scaler, folder=os.path.join(trainer.save_dir, 'train'), N=128, N_max=256, T=40)
-    ll_object.compute_ll(x_recons_tr, z_list)
+    ll_object.compute_ll(x_recons_tr, z_list_tr)
     model.plot_loglikelihod(base_dir=os.path.join(trainer.save_dir, 'train'), scaler=scaler, x_norm=x_train_norm)
 
 x_tr = x_train[:1000]

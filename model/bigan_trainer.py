@@ -123,7 +123,7 @@ class SNBiGANTrainer(BaseTrainer):
         if not self.d_batch_on:
             return data_curr
 
-        if self.bigan_type in [cte.BiGAN7, cte.EPMDGAN] and self.data_batch is None:
+        if self.bigan_type in [cte.EPMDGAN] and self.data_batch is None:
             self.data_batch = cuda(data_curr)
             return data_curr
 
@@ -200,7 +200,7 @@ class SNBiGANTrainer(BaseTrainer):
                 if self.l_dis == 0:
                     self.d_batch_on = False  # self.d_batch_on = True
 
-                elif self.l_dis > 0 and self.bigan_type in [cte.BiGAN7, cte.BiGAN8]:
+                elif self.l_dis > 0 and self.bigan_type in [cte.EPMDGAN]:
                     self.probs = self.get_probs_psnr(train_loader_sorted)
                     train_loader = self.get_data_loader(train_set, istrain=True)
 
@@ -216,7 +216,7 @@ class SNBiGANTrainer(BaseTrainer):
             if epoch % 100 == 0:
                 self.save(self.get_state_dict(epoch), epoch=epoch)
             if epoch % self.save_every == 0 or last_epoch:
-                imgs = self.save_images(z, epoch)
+                imgs = self.save_images(z)
                 grid = torchvision.utils.make_grid(imgs)
                 self.writer.add_image('generated', grid, epoch, dataformats='CHW')
                 self.save(self.get_state_dict(epoch))
